@@ -1,12 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>49.0</apiVersion>
+    <decisions>
+        <name>If_observation_exists</name>
+        <label>If observation exists</label>
+        <locationX>182</locationX>
+        <locationY>554</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>DoentExists</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>GetCareObservation</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Create_CareObservation_0</targetReference>
+            </connector>
+            <label>Doesn&apos;t Exists</label>
+        </rules>
+    </decisions>
     <interviewLabel>Create Care Observations from Platform Events {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Create Care Observations from Platform Events</label>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
             <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
         </value>
     </processMetadataValues>
     <processMetadataValues>
@@ -17,10 +45,10 @@
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
     <recordCreates>
-        <name>Create_CareObservation</name>
+        <name>Create_CareObservation_0</name>
         <label>Create CareObservation</label>
-        <locationX>176</locationX>
-        <locationY>562</locationY>
+        <locationX>50</locationX>
+        <locationY>674</locationY>
         <inputAssignments>
             <field>CodeId</field>
             <value>
@@ -31,6 +59,12 @@
             <field>EffectiveDateTime</field>
             <value>
                 <elementReference>$Record.ObservationDate__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>ExternalId__c</field>
+            <value>
+                <elementReference>$Record.Id__c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -63,8 +97,8 @@
     <recordLookups>
         <name>Get_CodeSet</name>
         <label>Get CodeSet</label>
-        <locationX>176</locationX>
-        <locationY>251</locationY>
+        <locationX>182</locationX>
+        <locationY>194</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_UnitOfMeasure</targetReference>
@@ -74,7 +108,7 @@
             <field>Code</field>
             <operator>EqualTo</operator>
             <value>
-                <stringValue>healthkit-fvc</stringValue>
+                <elementReference>$Record.CodeSet_Id__c</elementReference>
             </value>
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
@@ -84,34 +118,48 @@
     <recordLookups>
         <name>Get_UnitOfMeasure</name>
         <label>Get UnitOfMeasure</label>
-        <locationX>176</locationX>
-        <locationY>393</locationY>
+        <locationX>182</locationX>
+        <locationY>314</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Create_CareObservation</targetReference>
+            <targetReference>GetCareObservation</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
-        <filters>
-            <field>Name</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>Liter</stringValue>
-            </value>
-        </filters>
         <filters>
             <field>UnitCode</field>
             <operator>EqualTo</operator>
             <value>
-                <stringValue>l</stringValue>
+                <elementReference>$Record.UOM__c</elementReference>
             </value>
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
         <object>UnitOfMeasure</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
+    <recordLookups>
+        <name>GetCareObservation</name>
+        <label>GetCareObservation</label>
+        <locationX>182</locationX>
+        <locationY>434</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>If_observation_exists</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>ExternalId__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Id__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>CareObservation</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
     <start>
-        <locationX>50</locationX>
-        <locationY>50</locationY>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
         <connector>
             <targetReference>Get_CodeSet</targetReference>
         </connector>
