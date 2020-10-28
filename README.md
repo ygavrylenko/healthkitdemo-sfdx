@@ -57,6 +57,8 @@ Follow the steps in the [Quick Start: Visual Studio Code for Salesforce Developm
 
 > IMPORTANT: CodeSet objects are required when creating new Care Observations, mobile app transfers the CodeSet codes as a part of Observation_Event__e (together with UnitCode) and they are used by flow to retrieve corresponding CodeSet and UnitOfMeasure objects to create Care Observations.
 
+1. Choose which patient you want to use for a demo (e.g. Charles Green as Part of Health Cloud - Makana Community) and assign **HealthKitPatientPS** Permission Set to this user! 
+
 1. Go to connected app "HealthKitDemo Mobile App" save Consumer Key, you need to specify it later in the settings of mobille app (bootconfig.plist)
 
 1. Go to overview of communities (in Setup) and copy url of your commnunity endpoint, you need to specify it later in the settings of mobille app (Info.plist)
