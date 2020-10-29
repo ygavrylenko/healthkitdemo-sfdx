@@ -1,5 +1,7 @@
 # Salesforce HealthKit to Health Cloud - Org Customizations Project
 
+<img src="images/SF_HealthKit_Logo.png" width="350">
+
 > IMPORTANT: These are the customizations for Salesforce Health Cloud org (**min version 228**) which are required in order to integrate iOS Demo Mobile SDK Application + Apple HealthKit app wich can be found [here](https://github.com/ygavrylenko/healthkitdemo).
 
 Following components will be deployed to your org:
