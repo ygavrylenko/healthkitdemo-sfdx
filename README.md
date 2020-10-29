@@ -1,6 +1,6 @@
 # Salesforce HealthKit to Health Cloud - Org Customizations Project
 
-> IMPORTANT: These are the customizations for Salesforce Health Cloud org (**min version 288**) which are required in order to integrate iOS Demo Mobile SDK Application + Apple HealthKit app wich can be found [here](https://github.com/ygavrylenko/healthkitdemo).
+> IMPORTANT: These are the customizations for Salesforce Health Cloud org (**min version 228**) which are required in order to integrate iOS Demo Mobile SDK Application + Apple HealthKit app wich can be found [here](https://github.com/ygavrylenko/healthkitdemo).
 
 Following components will be deployed to your org:
 - Platform Event Observation_Event__e
