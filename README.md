@@ -23,6 +23,8 @@ Follow the steps in the [Quick Start: Visual Studio Code for Salesforce Developm
 
 ## How to Deploy Your Changes?
 
+> IMPORTANT: You can deploy changes either by using VSCode with SFDX extension (preffered way, Press CMD+Shift+P on Mac for the list of available commands) or by executing commands in terminal window (please specify username in this case with -u option).
+
 1. Clone this repository:
 
     ```
@@ -30,7 +32,7 @@ Follow the steps in the [Quick Start: Visual Studio Code for Salesforce Developm
     cd healthkitdemo-sfdx
     ```
 
-1. Authorize your Health Cloud org using VSCode extension - Press CMD+Shift+P (For Mac) and Choose "SFDX: Authorize an Org". Alternatively execute following SFDX Command:
+1. Authorize your Health Cloud org using VSCode extension -  and Choose "SFDX: Authorize an Org". Alternatively execute following SFDX Command in terminal:
 
     ```
     sfdx force:auth:web:login
