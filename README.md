@@ -34,16 +34,16 @@ Follow the steps in the [Quick Start: Visual Studio Code for Salesforce Developm
     sfdx force:auth:web:login
     ```
 
-1. Deploy meta-data to your org either by clicking on force-app directory and clicking "Deploy Source to Org" or executing following command:
+1. Deploy meta-data to your org either by clicking on force-app directory and clicking "Deploy Source to Org" or executing following command (replace username with valid one):
 
     ```
-    sfdx force:source:deploy --sourcepath /Users/ygavrylenko/dev/sfdx-dev/healkitdemo-sfdx/force-app
+    sfdx force:source:deploy --sourcepath ./force-app -u username
     ```
 
 1. Assign the **HealthKitDemoPS** permission set to the default user:
 
     ```
-    sfdx force:user:permset:assign -n HealthKitDemoPS
+    sfdx force:user:permset:assign -n HealthKitDemoPS -u username
     ```
 
 ## Post deployments steps in your org:
